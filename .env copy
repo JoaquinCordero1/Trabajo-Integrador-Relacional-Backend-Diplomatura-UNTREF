@@ -2,5 +2,5 @@ PORT=3008
 DB_NAME="Nombre de tu base de datos"
 DB_USER="Tu usuario"
 DB_PASSWORD="Tu contraseña"
-DB_HOST="Servidor donde está alojada la bd"
+DB_HOST="Servidor donde está alojada la base de datos"
 DB_DIALECT="Dialecto"
