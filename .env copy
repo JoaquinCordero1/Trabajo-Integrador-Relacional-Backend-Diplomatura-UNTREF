@@ -1,0 +1,6 @@
+PORT=3008
+DB_NAME=database_name
+DB_USER=usuario
+DB_PASSWORD=contraseña
+DB_HOST=host
+DB_DIALECT=mysql

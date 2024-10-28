@@ -12,9 +12,7 @@ En este proyecto, desarrollé una plataforma de streaming usando Node.js y MySQL
   - [Eliminar un contenido](#eliminar-un-contenido)
   - [Filtrar contenidos](#filtrar-por-contenido)
 - [Manejo de Errores](#manejo-de-errores)
-- [Instalación](#instalación)
-- [Contribución](#contribución)
-- [Licencia](#licencia)
+- [Variables de entorno](#variables-de-entorno)
 
 ## Tecnologías
 
@@ -144,4 +142,57 @@ La API devuelve una respuesta en formato JSON que incluye un mensaje indicando q
   "error": "Not Found",
   "status": 404
 }
+```
+
+## Uso de `.env`
+
+Para manejar la configuración de la base de datos de manera segura y flexible, este proyecto utiliza un archivo `.env`. Este archivo contiene variables de entorno que permiten configurar parámetros sensibles, como las credenciales de acceso a la base de datos, sin exponerlos directamente en el código.
+
+### Variables de Entorno
+
+A continuación se muestran las variables de entorno utilizadas en este proyecto:
+
+- `DB_NAME`: El nombre de la base de datos.
+- `DB_USER`: El nombre de usuario para acceder a la base de datos.
+- `DB_PASSWORD`: La contraseña del usuario de la base de datos.
+- `DB_HOST`: La dirección del host donde se encuentra la base de datos.
+- `DB_DIALECT`: El dialecto de la base de datos (por ejemplo, `mysql`, `postgres`, etc.).
+
+### Configuración
+
+Para utilizar estas variables de entorno, asegúrate de crear un archivo `.env` en la raíz del proyecto con el siguiente formato:
+
+```env
+DB_NAME=nombre_de_la_base_de_datos
+DB_USER=nombre_de_usuario
+DB_PASSWORD=contraseña
+DB_HOST=localhost
+DB_DIALECT=mysql
+```
+
+### Conexión a la Base de Datos
+
+El siguiente fragmento de código muestra cómo se utiliza Sequelize para conectarse a la base de datos utilizando las variables de entorno definidas en el archivo .env:
+
+```js
+const { Sequelize } = require("sequelize");
+process.loadEnvFile(); // También puedes usar dotenv
+
+const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_DIALECT } = process.env;
+
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  dialect: DB_DIALECT,
+});
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Conectado a la base de datos MySQL con Sequelize.");
+  })
+  .catch((err) => {
+    console.error("No se pudo conectar a la base de datos:", err);
+  });
+
+module.exports = sequelize;
 ```
