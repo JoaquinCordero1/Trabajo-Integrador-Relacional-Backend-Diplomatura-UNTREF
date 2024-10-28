@@ -1,0 +1,47 @@
+### Obtener todos los contenidos
+GET http://localhost:3008/contenido/
+
+### Obtener un contenido por ID
+GET http://localhost:3008/contenido/48
+
+### Filtrar contenidos
+GET http://localhost:3008/contenido/filter?titulo=The%Mandalorian
+###
+GET http://localhost:3008/contenido/filter?genero=Sci-Fi
+###
+GET http://localhost:3008/contenido/filter?categoria=Pelicula
+###
+GET http://localhost:3008/contenido/filter?titulo=Gambito de Dama&genero=Drama&categoria=Serie
+
+### Agregar un nuevo contenido
+POST http://localhost:3008/contenido/add
+Content-Type: application/json
+
+ {
+    "titulo": "El Misterio de la Isla Perdida 3",
+    "categoria": "Serie",
+    "resumen": "Un grupo de exploradores se aventura en una isla misteriosa en busca de un tesoro perdido.",
+    "temporadas": "N/A",
+    "poster": "./posters/misterio_isla_3.jpg",
+    "busqueda": "misterio, aventura, tesoro, isla, supervivencia",
+    "trailer": "https://www.youtube.com/embed/elmisteriordelaisla",
+    "genero": "Aventura",
+    "reparto": "John Doe, Jane Smith, Michael Johnson"
+  }
+
+### Actualizar un contenido por ID
+PUT http://localhost:3008/contenido/update/51
+Content-Type: application/json
+
+{
+    "temporadas": 2,
+    "reparto": "Nuevo Actor 1, Nuevo Actor 2",
+    "trailer": "https://www.youtube.com/embed/nuevo_trailer"
+}
+
+### Eliminar un contenido por ID
+DELETE http://localhost:3008/contenido/50
+
+### Ruta no encontrada
+
+GET http://localhost:3008/netflix
