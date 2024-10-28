@@ -65,10 +65,8 @@ A continuación se detallan los endpoints disponibles en la API:
 - **Cuerpo de la solicitud**:
   ```json
   {
-    "titulo": "Nuevo Título",
     "temporadas": 2,
-    "resumen": "Nuevo resumen.",
-    "poster": "./posters/nuevo_poster.jpg",
+    "trailer": "https://youtube.com/trailer",
     "reparto": "Nuevo Actor, Otro Actor"
   }
   ```
