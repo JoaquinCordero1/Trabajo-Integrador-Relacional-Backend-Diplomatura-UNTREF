@@ -13,6 +13,7 @@ En este proyecto, desarrollé una plataforma de streaming usando Node.js y MySQL
   - [Filtrar contenidos](#filtrar-por-contenido)
 - [Manejo de Errores](#manejo-de-errores)
 - [Variables de entorno](#variables-de-entorno)
+- [Inicialización del Proyecto](#inicialización-del-proyecto)
 
 ## Tecnologías
 
