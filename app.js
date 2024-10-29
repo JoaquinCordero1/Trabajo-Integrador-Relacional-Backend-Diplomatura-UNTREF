@@ -7,7 +7,9 @@ const Genero = require("./models/genero");
 const Actor = require("./models/actor");
 const ContenidoActores = require("./models/contenido_actores");
 const ContenidoGeneros = require("./models/contenido_generos");
+const { swaggerUi, swaggerDocs } = require("./config/swagger");
 app.use(express.json());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(async (req, res, next) => {
   try {
@@ -41,4 +43,5 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor abierto en http://localhost:${PORT}`);
+  console.log(`Documentación disponible en http://localhost:${PORT}/api-docs`);
 });

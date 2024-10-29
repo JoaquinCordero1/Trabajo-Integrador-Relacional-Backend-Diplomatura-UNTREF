@@ -7,6 +7,7 @@ const ContenidoGeneros = require("../models/contenido_generos");
 const ContenidoActores = require("../models/contenido_actores");
 const { Op } = require("sequelize");
 
+//
 exports.getAllData = async (req, res) => {
   try {
     const content = await Contenido.findAll({
@@ -45,7 +46,7 @@ exports.getAllData = async (req, res) => {
     });
   }
 };
-
+//
 exports.getFilterData = async (req, res) => {
   const { titulo, genero, categoria } = req.query;
   console.log("query: ", titulo, genero, categoria);
@@ -99,7 +100,7 @@ exports.getFilterData = async (req, res) => {
     });
   }
 };
-
+//
 exports.getContentById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -120,7 +121,7 @@ exports.getContentById = async (req, res) => {
     });
   }
 };
-
+//
 exports.postAddNewContent = async (req, res) => {
   const {
     titulo,
@@ -195,7 +196,7 @@ exports.postAddNewContent = async (req, res) => {
       .json({ message: "Error al agregar contenido", error: error.message });
   }
 };
-
+//
 exports.putUpdateContentByID = async (req, res) => {
   const { id } = req.params;
   const { temporadas, reparto, trailer } = req.body;
@@ -248,7 +249,7 @@ exports.putUpdateContentByID = async (req, res) => {
       .json({ message: "Error al actualizar contenido", error: error.message });
   }
 };
-
+//
 exports.deleteContentByID = async (req, res) => {
   const { id } = req.params;
 
