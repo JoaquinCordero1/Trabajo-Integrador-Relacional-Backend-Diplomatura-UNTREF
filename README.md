@@ -196,3 +196,42 @@ sequelize
 
 module.exports = sequelize;
 ```
+
+## Inicialización del Proyecto
+
+Para inicializar este proyecto, sigue estos pasos:
+
+### 1. Clonar el Repositorio
+
+Primero, clona el repositorio en tu máquina local:
+
+```bash
+git clone https://github.com/tu_usuario/tu_repositorio.git
+cd tu_repositorio
+```
+
+## Instalar Dependencias
+
+Asegúrate de tener Node.js y npm instalados en tu máquina. Luego, instala las dependencias del proyecto ejecutando el siguiente comando en la raíz del proyecto:
+
+```bash
+npm install
+```
+
+## Inicia el servidor
+
+No olvides crear un archivo .env en la raíz del proyecto y configura las variables necesarias aclaradas en el .env copy. Una vez que hayas configurado todo, puedes iniciar el servidor ejecutando:
+
+```bash
+npm start
+```
+
+El servidor debería estar corriendo en `http://localhost:3008`
+
+## Acceder a la Documentación de la API
+
+Después de iniciar el servidor, puedes acceder a la documentación de la API en:
+
+```bash
+http://localhost:3008/api-docs
+```
