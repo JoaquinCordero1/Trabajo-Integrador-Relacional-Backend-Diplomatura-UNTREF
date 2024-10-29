@@ -208,7 +208,7 @@ Primero, clona el repositorio en tu máquina local:
 
 ```bash
 git clone https://github.com/JoaquinCordero1/Trabajo-Integrador-Relacional-Backend-Diplomatura-UNTREF
-cd tu_repositorio
+cd Trabajo-Integrador-Relacional-Backend-Diplomatura-UNTREF
 ```
 
 ## Instalar Dependencias
