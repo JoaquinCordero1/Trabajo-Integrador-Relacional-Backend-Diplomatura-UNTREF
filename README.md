@@ -207,7 +207,7 @@ Para inicializar este proyecto, sigue estos pasos:
 Primero, clona el repositorio en tu máquina local:
 
 ```bash
-git clone https://github.com/JoaquinCordero1/Trabajo-Integrador-Relacional-Backend-Diplomatura-UNTREF?tab=readme-ov-file#inicializaci%C3%B3n-del-proyecto
+git clone https://github.com/JoaquinCordero1/Trabajo-Integrador-Relacional-Backend-Diplomatura-UNTREF
 cd tu_repositorio
 ```
 
