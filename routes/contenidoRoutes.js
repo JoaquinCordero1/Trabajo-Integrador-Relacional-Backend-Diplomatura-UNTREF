@@ -266,12 +266,29 @@ router.post("/add", dataControllers.postAddNewContent);
  *           schema:
  *             type: object
  *             properties:
+ *               poster:
+ *                 type: string
+ *                 description: URL de la imagen del póster del contenido.
+ *               titulo:
+ *                 type: string
+ *                 description: Título del contenido.
+ *               resumen:
+ *                 type: string
+ *                 description: Resumen del contenido.
  *               temporadas:
  *                 type: string
  *                 description: Número de temporadas, si es una serie (puede ser "N/A").
  *               trailer:
  *                 type: string
  *                 description: URL del tráiler del contenido.
+ *               categoria:
+ *                 type: string
+ *                 description: Nombre de la categoría a la que pertenece el contenido.
+ *               genero:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 description: Lista de géneros asociados al contenido.
  *               reparto:
  *                 type: array
  *                 items:
@@ -292,10 +309,26 @@ router.post("/add", dataControllers.postAddNewContent);
  *                   properties:
  *                     id:
  *                       type: integer
+ *                     poster:
+ *                       type: string
+ *                     titulo:
+ *                       type: string
+ *                     resumen:
+ *                       type: string
  *                     temporadas:
  *                       type: string
  *                     trailer:
  *                       type: string
+ *                     categoria:
+ *                       type: string
+ *                     genero:
+ *                       type: array
+ *                       items:
+ *                         type: string
+ *                     reparto:
+ *                       type: array
+ *                       items:
+ *                         type: string
  *       400:
  *         description: El ID es obligatorio o no válido.
  *       404:

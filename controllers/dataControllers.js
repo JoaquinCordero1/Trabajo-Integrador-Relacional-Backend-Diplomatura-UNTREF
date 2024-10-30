@@ -135,7 +135,7 @@ exports.postAddNewContent = async (req, res) => {
     reparto,
   } = req.body;
 
-  if (!titulo || !categoria || !resumen || !genero || !reparto) {
+  if (!titulo || !categoria || !resumen || !genero || !reparto || !poster) {
     return res.status(400).json({
       message:
         "Todos los campos son obligatorios: titulo, categoria, resumen, genero, reparto",
@@ -163,6 +163,12 @@ exports.postAddNewContent = async (req, res) => {
     const actores =
       typeof reparto === "string" ? [reparto] : reparto.map((a) => a.trim());
 
+    // Elimina actores existentes en caso de que ya se haya creado
+    await ContenidoActores.destroy({
+      where: { id_contenido: nuevoContenido.id },
+    });
+
+    // Relacionar generos
     for (const generoNombre of generos) {
       const [generoObj] = await Genero.findOrCreate({
         where: { nombre: generoNombre },
@@ -174,6 +180,7 @@ exports.postAddNewContent = async (req, res) => {
       });
     }
 
+    // Relacionar reparto
     for (const actorNombre of actores) {
       const [actorObj] = await Actor.findOrCreate({
         where: { nombre: actorNombre },
@@ -199,7 +206,17 @@ exports.postAddNewContent = async (req, res) => {
 //
 exports.putUpdateContentByID = async (req, res) => {
   const { id } = req.params;
-  const { temporadas, reparto, trailer } = req.body;
+  const {
+    titulo,
+    categoria,
+    resumen,
+    temporadas,
+    poster,
+    busqueda,
+    trailer,
+    genero,
+    reparto,
+  } = req.body;
 
   if (!id) {
     return res
@@ -215,17 +232,25 @@ exports.putUpdateContentByID = async (req, res) => {
         .json({ message: "Contenido no encontrado.", status: 404 });
     }
 
-    if (temporadas !== undefined) {
-      contenido.temporadas = temporadas === "N/A" ? null : temporadas;
-    }
-    if (trailer) {
-      contenido.trailer = trailer;
-    }
+    // Actualizar los campos
+    contenido.titulo = titulo || contenido.titulo;
+    contenido.categoria = categoria || contenido.categoria;
+    contenido.resumen = resumen || contenido.resumen;
+    contenido.temporadas =
+      temporadas !== undefined
+        ? temporadas === "N/A"
+          ? null
+          : temporadas
+        : contenido.temporadas;
+    contenido.poster = poster || contenido.poster;
+    contenido.busqueda = busqueda || contenido.busqueda;
+    contenido.trailer = trailer || contenido.trailer;
+
     await contenido.save();
 
+    // Manejo del reparto
     if (reparto) {
       await ContenidoActores.destroy({ where: { id_contenido: id } });
-
       const actores =
         typeof reparto === "string" ? [reparto] : reparto.map((a) => a.trim());
       for (const actorNombre of actores) {

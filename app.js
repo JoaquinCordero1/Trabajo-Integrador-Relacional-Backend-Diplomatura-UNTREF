@@ -8,6 +8,7 @@ const Actor = require("./models/actor");
 const ContenidoActores = require("./models/contenido_actores");
 const ContenidoGeneros = require("./models/contenido_generos");
 const { swaggerUi, swaggerDocs } = require("./config/swagger");
+
 app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 

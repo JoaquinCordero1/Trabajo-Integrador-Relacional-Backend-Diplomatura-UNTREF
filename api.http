@@ -18,7 +18,7 @@ POST http://localhost:3008/contenido/add
 Content-Type: application/json
 
  {
-    "titulo": "El Misterio de la Isla Perdida 3",
+    "titulo": "El Misterio de la Isla Perdida 4",
     "categoria": "Serie",
     "resumen": "Un grupo de exploradores se aventura en una isla misteriosa en busca de un tesoro perdido.",
     "temporadas": "N/A",
@@ -30,13 +30,19 @@ Content-Type: application/json
   }
 
 ### Actualizar un contenido por ID
-PUT http://localhost:3008/contenido/update/51
+PUT http://localhost:3008/contenido/update/53
 Content-Type: application/json
 
 {
-    "temporadas": 2,
-    "reparto": "Nuevo Actor 1, Nuevo Actor 2",
-    "trailer": "https://www.youtube.com/embed/nuevo_trailer"
+    "titulo": "El Misterio de la Isla Perdida 6",
+    "categoria": "Serie",
+    "resumen": "Un grupo de exploradores se aventura en una isla misteriosa en busca de un tesoro perdido pero no lo encuentran.",
+    "temporadas": "3",
+    "poster": "./posters/misterio_isla_6.jpg",
+    "busqueda": "misterio, aventura, tesoro, isla, supervivencia, messi",
+    "trailer": "https://www.youtube.com/embed/elmisteriordelaislat3",
+    "genero": "Aventura",
+    "reparto": "John Doe, Jane Smith, Michael Johnson, Federio Mercurio, Marco Antonio"
 }
 
 ### Eliminar un contenido por ID
