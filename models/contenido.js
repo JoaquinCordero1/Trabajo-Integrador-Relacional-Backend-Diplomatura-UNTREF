@@ -1,4 +1,4 @@
-// Model for Contenido
+
 const { DataTypes } = require("sequelize");
 const sequelize = require("../conexion/database");
 const Actor = require("./actor");
@@ -25,7 +25,7 @@ const Contenido = sequelize.define(
   }
 );
 
-// En el modelo Contenido
+
 Contenido.belongsTo(Categoria, { foreignKey: 'categoria_id', as: 'Categoria' });
 Categoria.hasMany(Contenido, { foreignKey: 'categoria_id', as: 'Contenidos' });
 
