@@ -11,6 +11,7 @@ const { Op } = require("sequelize");
 exports.getAllData = async (req, res) => {
   try {
     const content = await Contenido.findAll({
+      attributes: { exclude: ["categoria_id"] },
       include: [
         {
           model: Categoria,
@@ -21,11 +22,13 @@ exports.getAllData = async (req, res) => {
           model: Genero,
           as: "Generos",
           attributes: ["nombre"],
+          through: { attributes: [] },
         },
         {
           model: Actor,
           as: "Reparto",
           attributes: ["nombre"],
+          through: { attributes: [] },
         },
       ],
     });
@@ -49,7 +52,6 @@ exports.getAllData = async (req, res) => {
 //
 exports.getFilterData = async (req, res) => {
   const { titulo, genero, categoria } = req.query;
-  console.log("query: ", titulo, genero, categoria);
   const condicion = {};
   const include = [];
 
@@ -61,6 +63,8 @@ exports.getFilterData = async (req, res) => {
     include.push({
       model: Genero,
       as: "Generos",
+      attributes: ["nombre"],
+      through: { attributes: [] },
       where: { nombre: { [Op.like]: `%${genero}%` } },
     });
   }
@@ -69,12 +73,14 @@ exports.getFilterData = async (req, res) => {
     include.push({
       model: Categoria,
       as: "Categoria",
+      attributes: ["nombre"],
       where: { nombre: { [Op.like]: `%${categoria}%` } },
     });
   }
 
   try {
     const contenido = await Contenido.findAll({
+      attributes: { exclude: ["categoria_id"] },
       where: condicion,
       include: include,
     });
