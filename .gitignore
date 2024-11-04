@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+/notas
+
+.env.local_railway
+.env.production
+.env.local

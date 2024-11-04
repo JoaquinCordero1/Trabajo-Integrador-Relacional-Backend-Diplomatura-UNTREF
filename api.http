@@ -18,9 +18,9 @@ POST http://localhost:3008/contenido/add
 Content-Type: application/json
 
  {
-    "titulo": "El Misterio de la Isla Perdida 4",
-    "categoria": "Serie",
-    "resumen": "Un grupo de exploradores se aventura en una isla misteriosa en busca de un tesoro perdido.",
+    "titulo": "EL Guachon",
+    "categoria": "Pelicula",
+    "resumen": "",
     "temporadas": "N/A",
     "poster": "./posters/misterio_isla_3.jpg",
     "busqueda": "misterio, aventura, tesoro, isla, supervivencia",
@@ -46,7 +46,7 @@ Content-Type: application/json
 }
 
 ### Eliminar un contenido por ID
-DELETE http://localhost:3008/contenido/50
+DELETE http://localhost:3008/contenido/55
 
 ### Ruta no encontrada
 
