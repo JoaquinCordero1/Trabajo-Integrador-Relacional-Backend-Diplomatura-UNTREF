@@ -13,6 +13,7 @@ const swaggerOptions = {
     servers: [
       {
         url: "http://localhost:3008",
+        url: "https://trabajo-integrador-untref-production.up.railway.app",
       },
     ],
   },
