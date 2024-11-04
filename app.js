@@ -32,6 +32,10 @@ app.use(async (req, res, next) => {
 
 const contenidoRoutes = require("./routes/contenidoRoutes");
 
+app.get("/", (req, res) => {
+  res.json("¡Bienvenido a mi API multimedia!");
+});
+
 app.use("/contenido", contenidoRoutes);
 app.use((req, res) => {
   res.status(404).json({
