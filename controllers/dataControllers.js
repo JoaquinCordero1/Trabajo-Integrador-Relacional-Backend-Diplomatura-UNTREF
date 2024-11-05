@@ -50,6 +50,35 @@ exports.getAllData = async (req, res) => {
   }
 };
 //
+exports.getContentById = async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  if (!id) {
+    console.log("Se requiere el ID");
+    return res
+      .status(400)
+      .json({ message: "Se requiere un id válido", status: 400 });
+  }
+  try {
+    const findTrailer = await Contenido.findByPk(id);
+    if (!findTrailer) {
+      console.log("Trailer no válido");
+      return res.status(404).json({
+        message: "Contenido inexistente con el ID proporcionado.",
+        status: 404,
+      });
+    }
+    res.status(200).json(findTrailer);
+  } catch (error) {
+    console.log("Error al mostrar el trailer: ", error);
+    res.status(500).json({
+      message: "Hubo un error al mostrar el trailer",
+      status: 500,
+      error: error.message,
+    });
+  }
+};
+//
 exports.getFilterData = async (req, res) => {
   const { titulo, genero, categoria } = req.query;
   const condicion = {};
@@ -107,27 +136,6 @@ exports.getFilterData = async (req, res) => {
   }
 };
 //
-exports.getContentById = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const findTrailer = await Contenido.findByPk(id);
-    if (!findTrailer) {
-      console.log("Trailer no válido");
-      return res
-        .status(404)
-        .json({ message: "Trailer inexistente", status: 404 });
-    }
-    res.status(200).json(findTrailer);
-  } catch (error) {
-    console.log("Error al mostrar el trailer: ", error);
-    res.status(500).json({
-      message: "Hubo un error al mostrar el trailer",
-      status: 500,
-      error: error.message,
-    });
-  }
-};
-//
 exports.postAddNewContent = async (req, res) => {
   const {
     titulo,
@@ -165,10 +173,13 @@ exports.postAddNewContent = async (req, res) => {
     });
 
     const generos =
-      typeof genero === "string" ? [genero] : genero.map((g) => g.trim());
+      typeof genero === "string"
+        ? genero.split(",").map((g) => g.trim())
+        : genero.map((g) => g.trim());
     const actores =
-      typeof reparto === "string" ? [reparto] : reparto.map((a) => a.trim());
-
+      typeof reparto === "string"
+        ? reparto.split(",").map((a) => a.trim())
+        : reparto.map((a) => a.trim());
     // Elimina actores existentes en caso de que ya se haya creado
     await ContenidoActores.destroy({
       where: { id_contenido: nuevoContenido.id },
@@ -179,6 +190,7 @@ exports.postAddNewContent = async (req, res) => {
       const [generoObj] = await Genero.findOrCreate({
         where: { nombre: generoNombre },
       });
+      // Si no existe, lo crea. Esto ayuda a evitar duplicados en la tabla Genero
 
       await ContenidoGeneros.create({
         id_contenido: nuevoContenido.id,
